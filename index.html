@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Farhan Alauddin Rizqullah</title>
+
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(to bottom,#050d2b,#0a1f44);
+    color:#e0f7ff;
+    text-align:center;
+}
+
+/* ===== BINTANG ===== */
+.star{
+    position:absolute;
+    width:2px;
+    height:2px;
+    background:white;
+    border-radius:50%;
+    animation:twinkle 3s infinite ease-in-out;
+}
+@keyframes twinkle{
+    0%,100%{opacity:0.2}
+    50%{opacity:1}
+}
+
+/* ===== METEOR ===== */
+.meteor{
+    position:absolute;
+    width:2px;
+    height:80px;
+    background:linear-gradient(white,transparent);
+    transform:rotate(45deg);
+    animation:shoot 3s linear infinite;
+}
+@keyframes shoot{
+    0%{top:-100px; left:-100px;}
+    100%{top:100vh; left:100vw; opacity:0;}
+}
+
+/* ===== CONTAINER ===== */
+.container{
+    position:relative;
+    top:15vh;
+    width:80%;
+    margin:auto;
+    background:rgba(255,255,255,0.05);
+    backdrop-filter:blur(15px);
+    padding:30px;
+    border-radius:25px;
+    box-shadow:0 0 30px rgba(79,195,247,0.4);
+    animation:fadeIn 2s ease;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+h1{
+    font-size:2.5em;
+    text-shadow:0 0 20px #4fc3f7;
+}
+
+.typing{
+    min-height:170px;
+    white-space:pre-line;
+    font-size:1.1em;
+    border-right:2px solid #4fc3f7;
+    margin-top:15px;
+}
+
+button{
+    margin-top:15px;
+    padding:12px 25px;
+    border-radius:25px;
+    border:2px solid #4fc3f7;
+    background:transparent;
+    color:#4fc3f7;
+    cursor:pointer;
+    transition:0.3s;
+}
+button:hover{
+    background:#4fc3f7;
+    color:#050d2b;
+    box-shadow:0 0 20px #4fc3f7;
+}
+
+/* ===== FIREWORK ===== */
+.firework{
+    position:absolute;
+    width:5px;
+    height:5px;
+    background:white;
+    border-radius:50%;
+    animation:explode 1s ease-out forwards;
+}
+@keyframes explode{
+    to{
+        transform:translate(var(--x), var(--y));
+        opacity:0;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🌌 Sebuah Perjalanan Waktu 🌌</h1>
+    <div class="typing" id="text"></div>
+    <button onclick="showUcapan()">Buka Ucapan 🎂</button>
+    <br>
+    <button onclick="playSong()">Putar Lagu Jamrud 🎵</button>
+</div>
+
+<script>
+// ===== BINTANG =====
+for(let i=0;i<200;i++){
+    let star=document.createElement("div");
+    star.className="star";
+    star.style.top=Math.random()*100+"vh";
+    star.style.left=Math.random()*100+"vw";
+    star.style.animationDuration=(Math.random()*3+2)+"s";
+    document.body.appendChild(star);
+}
+
+// ===== METEOR =====
+setInterval(()=>{
+    let meteor=document.createElement("div");
+    meteor.className="meteor";
+    meteor.style.left=Math.random()*100+"vw";
+    document.body.appendChild(meteor);
+    setTimeout(()=>meteor.remove(),3000);
+},5000);
+
+// ===== TEKS FILOSOFI AWAL =====
+let message=`Waktu berjalan tanpa pernah menunggu,
+namun selalu memberi kesempatan.
+
+Setiap usia adalah bab baru,
+setiap tahun adalah pelajaran,
+dan setiap detik adalah anugerah.
+
+Hidup bukan tentang menghitung hari,
+tetapi membuat hari-hari itu berarti.`;
+
+let i=0;
+function typeWriter(){
+    if(i<message.length){
+        document.getElementById("text").innerHTML+=message.charAt(i);
+        i++;
+        setTimeout(typeWriter,40);
+    }
+}
+typeWriter();
+
+// ===== UCAPAN + DOA =====
+function showUcapan(){
+    document.querySelector("h1").innerHTML="🎉 Happy Birthday 🎉<br>Farhan Alauddin Rizqullah ✨";
+
+    document.getElementById("text").innerHTML=`
+Selamat ulang tahun 🎂✨
+
+Semoga setiap langkahmu dimudahkan,
+setiap impianmu didekatkan,
+dan setiap harimu dipenuhi kebahagiaan.
+
+🤲 DOA 🤲
+Semoga Allah memberimu kesehatan,
+umur yang penuh keberkahan,
+rezeki yang luas,
+serta menjadikanmu pribadi yang kuat dan bijaksana.
+
+🌌 QUOTES FILOSOFI 🌌
+1. "Bintang bersinar bukan karena ingin dilihat,
+   tetapi karena memang diciptakan untuk bercahaya."
+2. "Kesuksesan adalah perjalanan, bukan tujuan."
+3. "Semakin tinggi mimpi, semakin kuat usaha."
+4. "Waktu adalah hadiah, gunakan dengan makna."
+`;
+
+    fireworks();
+}
+
+// ===== FIREWORK =====
+function fireworks(){
+    for(let i=0;i<40;i++){
+        let fw=document.createElement("div");
+        fw.className="firework";
+        fw.style.left=window.innerWidth/2+"px";
+        fw.style.top=window.innerHeight/2+"px";
+        fw.style.setProperty('--x',(Math.random()-0.5)*500+"px");
+        fw.style.setProperty('--y',(Math.random()-0.5)*500+"px");
+        document.body.appendChild(fw);
+        setTimeout(()=>fw.remove(),1000);
+    }
+}
+
+// ===== PLAY SONG =====
+function playSong(){
+    window.open("https://www.youtube.com/results?search_query=Jamrud+Selamat+Ulang+Tahun");
+}
+</script>
+
+</body>
+</html>
